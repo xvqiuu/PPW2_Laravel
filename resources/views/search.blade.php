@@ -1,53 +1,82 @@
-{{-- @extends('layouts.master') --}}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css"> 
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+    @if(count($data_buku))
+        <div class="alert alert-success">Ditemukan <strong>{{count($data_buku)}}</strong> data dengan
+    kata: <strong>{{ $cari }}</strong></div>
+    @else
+        <div class="alert alert-warning"><h4>Data {{ $cari }} tidak ditemukan</h4>
+        <a href="/buku" class="btn btn-warning">Kembali</a></div>
+    @endif
     <title>Search</title>
 </head>
-<body style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; background-color:  #E9B824;" class="container-sm">
-    {{-- @extends('layouts.master') --}}
 
-    {{-- @section('content') --}}
-    <br>
-    <h1 align="center" style="font-weight: medium; font-size:xx-large; color: black;">Edit Buku</h1>
-    <br>
+<body style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" class="container-sm">
 
-    <form method="POST" action="{{ route('buku.update', ['id' => $buku->id]) }}" class="form">
-        @csrf
-        @method('PUT')
-        <table class="table table-bordered" style="color: white; font-weight:bold; font-size:large;">
-            <tr>
-                <td><label for="judul">Judul</label></td>
-                <td><input type="text" name="judul" value="{{ $buku->judul }}"  class="form-control" style="color:black;"></td>
-            </tr>
-            <tr>
-                <td><label for="penulis">Penulis</label></td>
-                <td><input type="text" name="penulis" value="{{ $buku->penulis }}" class="form-control" style="color:black;"></td>
-            </tr>
-            <tr>
-                <td><label for="harga">Harga</label></td>
-                <td><input type="text" name="harga" value="{{ $buku->harga }}"  class="form-control" placeholder=" "></td>
-            </tr>
-            <tr>
-                <td><label for="tgl_terbit">Tanggal Terbit</label></td>
-                <td><input type="date" id="tgl_terbit" name="tgl_terbit" class="date form-control" placeholder="dd/mm/yyyy"></td>
-            </tr>
-            <tr>
-                <td align="right" colspan="2">
-                    <!-- Tambahkan tombol "Simpan Perubahan" -->
-                    <button type="submit" class="btn" style="background-color:#D83F31; color: white;">Simpan Perubahan</button>
-                </td>
-            </tr>
-        </table>
-    </form>
-    {{-- @endsection --}}
+<table class= "table table-bordered"  style="background-color:#219C90; color: white;">
+    <thead style="background-color: #037E72;">
+        <tr align="center">
+            <th>Id</th>
+            <th>Judul Buku</th>
+            <th>Penulis</th>
+            <th>Harga</th>
+            <th>Tanggal Terbit</th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
 
-</div>
+    <tbody align="center">
+        @if(Session::has('pesan'))
+            <div class="alert alert-success">{{Session::get('pesan')}}</div>
+        @endif
+        <br>
+        <h1 align='center' style="font-size:xx-large; font-weight: medium;">Daftar Buku</h1>
+        <br>
+        
+        <h1 align='left' style="font-size: large; font-weight: medium;"><a class="btn" style="background-color: #219C90; color: white; font-weight: bold;" href="{{ route('buku.create') }}"> Tambah Buku </a> 
+        </h1>
+
+        <br>
+        <div style="font-size:large; font-weight: medium;">{{ "Jumlah Buku : " .$jumlah_buku ." buku"}}</div>
+        
+        <div align="center"> {{ $data_buku -> links() }}</div>  
+
+        <form action="{{ route('buku.search')}}" method="get">
+            @csrf
+            <input type="text" name="kata" class="form-control" placeholder= "Cari ....." style=" width:40%;
+                display: inline; margin-top: 10px; margin-bottom: 10px; float: rigth;">
+        </form>
+
+        @foreach($data_buku as $buku)
+        <tr>
+            <td>{{$buku -> id}}</td>
+            <td align="left">{{$buku -> judul}}</td>
+            <td align="left">{{$buku -> penulis}}</td>
+            
+            <!-- number_format digunakan untuk memformat angka pada kolom harga -->
+            <td>{{"Rp ".number_format($buku -> harga, 0, ',', '.')}}</td> 
+            <td>{{\Carbon\Carbon::parse($buku->tgl_terbit)->format('d/m/Y') }}</td>
+
+            <td>
+                <form action= "{{route('buku.destroy',$buku->id)}}" method="post">
+                    @csrf
+                    <button onClick="return confirm('Yakin mau dihapus?')" class="btn btn-danger" style="font-weight: 700;">Hapus</button>
+                </form>
+
+                <br>
+
+                <a href="{{route('buku.edit', ['id' => $buku->id]) }}" class="btn" style="background-color:#EE9322; color:white; font-weight:700;">&nbsp; Edit &nbsp;</a>
+                
+            </td>
+
+        </tr>
+        @endforeach
+    </tbody>
+
+</table>
 </body>
 </html>

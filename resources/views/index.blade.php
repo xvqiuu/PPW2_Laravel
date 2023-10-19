@@ -50,7 +50,7 @@
             <td align="left">{{$buku -> penulis}}</td>
             
             <!-- number_format digunakan untuk memformat angka pada kolom harga -->
-            <td>{{"Rp ".number_format($buku -> harga, 0, ',', '.')}}</td> 
+            <td>{{"Rp ".number_format($buku -> harga, 2, ',', '.')}}</td> 
             <td>{{\Carbon\Carbon::parse($buku->tgl_terbit)->format('dd/mm/yyyy') }}</td>
 
             <td>
@@ -74,7 +74,7 @@
             <th> Jumlah </th>
             <th>{{ $jumlah_data }}</th>
             <th colspan="1"></th>
-            <th> {{"Rp " .number_format($total_harga, 0, ',', '.') }}</th>
+            <th> {{"Rp " .number_format($total_harga, 2, ',', '.') }}</th>
             <th colspan="1"></th>
         </tr>
     </tfoot>

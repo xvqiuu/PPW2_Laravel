@@ -40,33 +40,14 @@ class BukuController extends Controller
         $buku -> judul = $request -> judul;
         $buku -> penulis = $request -> penulis;
         $buku -> harga = $request -> harga;
-        $buku -> tgl_terbit = $request -> tgl_terbit;
+        $buku -> tgl_terbit = $request -> tgl_terbit;       
 
-        $pesan = [
-            'required' => 'Kolom judul wajib diisi.',
-            'string' => 'Kolom penulis harus berupa teks.',
-            'max' => [
-                'string' => 'Kolom penulis tidak boleh lebih dari :30 karakter.',
-            ],
-            'numeric' => 'Kolom harga harus berupa angka.',
-            'date' => 'Kolom tanggal terbit harus berupa tanggal.',
-        ];
-        
-        $atribut = [
-            'judul' => 'Judul Buku',
-            'penulis' => 'Penulis',
-            'harga' => 'Harga',
-            'tgl_terbit' => 'Tanggal Terbit',
-        ];
-        
-        $this->validate($request, $pesan, $atribut);        
-
-        // $this->validate($request,[
-        //     'judul'  => 'required|string',
-        //     'penulis' => 'required|string|max:30',
-        //     'harga' => 'required|numeric',
-        //     'tanggal terbit' =>'required|date'
-        // ]);
+        $this->validate($request,[
+            'judul'  => 'required|string',
+            'penulis' => 'required|string|max:30',
+            'harga' => 'required|numeric',
+            'tanggal terbit' =>'required|date'
+        ]);
 
         $buku -> save();
         // menambahkan pesan menggunakan with
