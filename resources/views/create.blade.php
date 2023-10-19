@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
     <title>Create</title>
 </head>
-<body style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; background-color: #219C90;">
+<body style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; background-color: #0D617D;  color: white;">
 <div class="container-sm">
     @if(count($errors) > 0)
         <div class="alert alert-danger">
@@ -20,7 +20,7 @@
         </div>
     @endif
     <br>
-    <h1 align="center" style="font-weight: medium; font-size:xx-large; color: black;">Tambah Buku</h1>
+    <h1 align="center" style="font-weight: bold; font-size:xx-large;">Tambah Buku</h1>
     <br>
     <form method="post" action="{{ route('buku.store') }}">
         @csrf
@@ -43,8 +43,8 @@
             </tr>
             <tr>   
                 <td align="right" colspan="2">
-                    <button type="submit" class="btn" style="background-color:#D83F31; color: white;">Simpan</button>
-                    <a href="/buku" class="btn" style="background-color: black; color:white;">&nbsp; Batal &nbsp;</a>
+                    <button type="submit" class="btn" style="background-color:#04364A; color: white;">Simpan</button>
+                    <a href="/buku" class="btn btn-secondary" style=" color:white;">&nbsp; Batal &nbsp;</a>
                 </td>
             </tr>
         </table>

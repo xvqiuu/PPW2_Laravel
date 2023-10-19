@@ -10,6 +10,7 @@
     kata: <strong>{{ $cari }}</strong></div>
     @else
         <div class="alert alert-warning"><h4>Data {{ $cari }} tidak ditemukan</h4>
+        <br>
         <a href="/buku" class="btn btn-warning">Kembali</a></div>
     @endif
     <title>Search</title>
@@ -17,8 +18,8 @@
 
 <body style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" class="container-sm">
 
-<table class= "table table-bordered"  style="background-color:#219C90; color: white;">
-    <thead style="background-color: #037E72;">
+<table class= "table table-bordered"  style="background-color: #0D617D; color: white;">
+    <thead style="background-color: #04364A;">
         <tr align="center">
             <th>Id</th>
             <th>Judul Buku</th>
@@ -34,10 +35,10 @@
             <div class="alert alert-success">{{Session::get('pesan')}}</div>
         @endif
         <br>
-        <h1 align='center' style="font-size:xx-large; font-weight: medium;">Daftar Buku</h1>
+        <h1 align='center' style="font-size:xx-large; font-weight: bold; color: #04364A;">Daftar Buku</h1>
         <br>
         
-        <h1 align='left' style="font-size: large; font-weight: medium;"><a class="btn" style="background-color: #219C90; color: white; font-weight: bold;" href="{{ route('buku.create') }}"> Tambah Buku </a> 
+        <h1 align='left' style="font-size: large; font-weight: medium;"><a class="btn" style="background-color: #04364A; color: white; font-weight: bold;" href="{{ route('buku.create') }}"> Tambah Buku </a> 
         </h1>
 
         <br>
@@ -69,7 +70,7 @@
 
                 <br>
 
-                <a href="{{route('buku.edit', ['id' => $buku->id]) }}" class="btn" style="background-color:#EE9322; color:white; font-weight:700;">&nbsp; Edit &nbsp;</a>
+                <a href="{{route('buku.edit', ['id' => $buku->id]) }}" class="btn" style="background-color:#04364A; color:white; font-weight:700;">&nbsp; Edit &nbsp;</a>
                 
             </td>
 

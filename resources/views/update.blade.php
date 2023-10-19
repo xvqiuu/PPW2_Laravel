@@ -10,12 +10,12 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
     <title>Update</title>
 </head>
-<body style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; background-color:  #E9B824;" class="container-sm">
+<body style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; background-color: #0D617D;  color: white;" class="container-sm">
     {{-- @extends('layouts.master') --}}
 
     {{-- @section('content') --}}
     <br>
-    <h1 align="center" style="font-weight: medium; font-size:xx-large; color: black;">Edit Buku</h1>
+    <h1 align="center" style="font-weight: bold; font-size:xx-large; color: white;">Edit Buku</h1>
     <br>
 
     <form method="POST" action="{{ route('buku.update', ['id' => $buku->id]) }}" class="form">
@@ -41,7 +41,7 @@
             <tr>
                 <td align="right" colspan="2">
                     <!-- Tambahkan tombol "Simpan Perubahan" -->
-                    <button type="submit" class="btn" style="background-color:#D83F31; color: white;">Simpan Perubahan</button>
+                    <button type="submit" class="btn" style="background-color:#04364A; color: white;">Simpan Perubahan</button>
                 </td>
             </tr>
         </table>
