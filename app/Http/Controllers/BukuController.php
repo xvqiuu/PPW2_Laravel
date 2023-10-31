@@ -70,6 +70,7 @@ class BukuController extends Controller
         $buku->judul = $request-> judul;
         $buku->penulis = $request-> penulis;
         $buku->harga = $request-> harga;
+        $buku -> tgl_terbit = $request -> tgl_terbit;  
         $buku->save();
         return redirect('/buku')->with('pesan','Data Buku Berhasil di Update');
     }

@@ -19,7 +19,7 @@ class BukuFactory extends Factory
         return [
             'judul' => $this->faker->words(rand(2, 5), true),
             'penulis' => $this->faker->name(),
-            'harga'=> $this->faker->numberBetween(20000,300000),
+            'harga'=> $this->faker->numberBetween(20000,200000),
             'tgl_terbit' => $this->faker->date(),
         ];
     }
